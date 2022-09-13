@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Panel expandable="false">
+		<f:SimpleForm minWidth="1024" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanL="5" labelSpanM="4"
+			emptySpanL="1" emptySpanM="0" columnsL="2" columnsM="2" binding="{worklistView>/Accommodation}">
+			<f:content>
+				<core:Title text="{i18n>ADD_DATA}" icon="sap-icon://add-contact"/>
+				<Label text="{i18n>VENDOR_NO}"
+					visible="{= ( ${worklistView>/Accommodation/BusType} === ${i18n>GD} &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} ) || ( ${worklistView>/Accommodation/BusType} === ${i18n>BS} &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} ) }"/>
+				<Text text="{worklistView>VendorName} ({= ${utility>/}.RemoveZeros(${worklistView>VendorNo})})" class="simpleFormText"
+					visible="{= ( ${worklistView>/Accommodation/BusType} === ${i18n>GD} &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} ) || ( ${worklistView>/Accommodation/BusType} === ${i18n>BS} &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} ) }"/>
+				<Label text="{i18n>RAISED_BY}"/>
+				<!--<Text text="{worklistView>RaisedBy} - {worklistView>RaisedByName}" class="simpleFormText"/>-->
+				<Text text="{worklistView>/Accommodation/PayrollFullName} ({= ${utility>/}.RemoveZeros(${worklistView>/Accommodation/PayrollNo})})"
+					class="simpleFormText"/>
+				<core:Title text="" class="letsNotDisplayThisInMobileView">
+					<core:customData>
+						<core:CustomData key="letsNotDisplayThisInMobileView" value="true" writeToDom="true"></core:CustomData>
+					</core:customData>
+				</core:Title>
+				<Label text="{i18n>BP_NO}"
+					visible="{= ( ${worklistView>/Accommodation/BusType} === ${i18n>GD} &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} ) || ( ${worklistView>/Accommodation/BusType} === ${i18n>BS} &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} ) }"/>
+				<Text text="{worklistView>BPName} ({= ${utility>/}.RemoveZeros(${worklistView>BPNo})})" class="simpleFormText"
+					visible="{= ( ${worklistView>/Accommodation/BusType} === ${i18n>GD} &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} ) || ( ${worklistView>/Accommodation/BusType} === ${i18n>BS} &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} ) }"/>
+				<Label text="{i18n>COST_CENTER}"/>
+				<Text text="{worklistView>CostCenterName} ({= ${utility>/}.RemoveZeros(${worklistView>CostCenter})})" class="simpleFormText"/>
+			</f:content>
+		</f:SimpleForm>
+	</Panel>
+</core:FragmentDefinition>

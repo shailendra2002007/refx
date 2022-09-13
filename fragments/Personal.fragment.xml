@@ -1,0 +1,100 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:custom="dewa.refx.accommodation.util">
+    <Panel expandable="false">
+        <f:SimpleForm minWidth="1024"
+            maxContainerCols="2"
+            editable="{= ( ${worklistView>/sProcessType} === 'createRequest') ? true : false}"
+            layout="ResponsiveGridLayout"
+            labelSpanL="5"
+            labelSpanM="4"
+            emptySpanL="1"
+            emptySpanM="0"
+            columnsL="2"
+            columnsM="2"
+            binding="{worklistView>/Accommodation}">
+            <f:content>
+                <core:Title text="{i18n>PERSONAL_DATA}"
+                    icon="sap-icon://activity-individual" />
+                <Label text="{i18n>PAYRL_NO}" />
+                <Text text="{= ${utility>/}.RemoveZeros(${worklistView>PayrollNo})}"
+                    class="simpleFormText" />
+                <Label text="{i18n>JOIN_DATE}" />
+                <Text text="{path: 'worklistView>JoiningDate',type:'sap.ui.model.odata.type.DateTime',formatOptions:{pattern:'MMM dd, yyyy'},constraints:{displayFormat:'Date'}}"
+                    class="simpleFormText" />
+                <Label text="{i18n>MARITAL_STATUS}" />
+                <Text text="{worklistView>MaritalStatusText}"
+                    class="simpleFormText" />
+                <Label text="{i18n>NO_FAMILY_MEM}" />
+                <Text text="{= ${utility>/}.RemoveZeros(${worklistView>DependentsNo})}"
+                    class="simpleFormText" />
+                <core:Title text=""
+                    class="letsNotDisplayThisInMobileView">
+                    <core:customData>
+                        <core:CustomData key="letsNotDisplayThisInMobileView"
+                            value="true"
+                            writeToDom="true"></core:CustomData>
+                    </core:customData>
+                </core:Title>
+                <Label text="{i18n>FULL_NAME}" />
+                <Text text="{worklistView>PayrollFullName}"
+                    class="simpleFormText" />
+                <Label text="{i18n>NATIONALITY}" />
+                <Text text="{worklistView>Nationality}"
+                    class="simpleFormText" />
+                <Label visible="{= ${worklistView>/sProcessType} !== 'createRequest' ? true : false }"
+                    text="{i18n>EMAIL}"
+                    required="{= ${worklistView>/sProcessType} === 'createRequest' ? true : false }" />
+                <Text visible="{= ${worklistView>/sProcessType} !== 'createRequest' ? true : false }"
+                    text="{worklistView>Email}"
+                    class="simpleFormText" />
+                <Label visible="{= ${worklistView>/sProcessType} === 'createRequest' ? true : false }"
+                    text="{i18n>EMAIL}"
+                    required="{= ${worklistView>/sProcessType} === 'createRequest' ? true : false }" />
+                <Input visible="{= ${worklistView>/sProcessType} === 'createRequest' ? true : false }"
+                    id="emailAddress"
+                    liveChange=".validateEmail"
+                    valueStateText="{i18n>EMAIL_VALUESTATE}"
+                    valueState="{worklistView>/emailValueState}"
+                    class="sapMInputBaseWidthPadding"
+                    value="{path:'worklistView>Email',type : '.oCustomType.EmailAddress'}"
+                    type="Email"
+                    editable="{= ( ${worklistView>/sProcessType} === 'createRequest') ? true : false}" />
+                <!-- <Input visible="{= ${worklistView>/sProcessType} === 'createRequest' ? true : false }" id="emailAddress" liveChange=".validateEmail" valueStateText="{i18n>EMAIL_VALUESTATE}"  -->
+                <!-- valueState="{worklistView>/emailValueState}" class="sapMInputBaseWidthPadding" value="{path:'worklistView>Email',type : 'sap.ui.model.type.String',constraints : {search : '\\S+@\\S+\\.\\S+'}}"  -->
+                <!-- type="Email" editable="{= ( ${worklistView>/sProcessType} === 'createRequest') ? true : false}" /> -->
+                <Label visible="{= ${worklistView>/sProcessType} !== 'createRequest' ? true : false }"
+                    text="{i18n>MOBILE}"
+                    required="{= ${worklistView>/sProcessType} === 'createRequest' ? true : false }" />
+                <Text visible="{= ${worklistView>/sProcessType} !== 'createRequest' ? true : false }"
+                    text="{worklistView>Mobile}"
+                    class="simpleFormText" />
+                <Label visible="{= ${worklistView>/sProcessType} === 'createRequest' ? true : false }"
+                    text="{i18n>MOBILE}"
+                    required="{= ${worklistView>/sProcessType} === 'createRequest' ? true : false }" />
+                <custom:maskedInputExtended visible="{= ${worklistView>/sProcessType} === 'createRequest' ? true : false }"
+                    id="mobilePhone"
+                    fireLivechange="true"
+                    valueState="{worklistView>/mobileValueState}"
+                    valueStateText="{i18n>MOBILE_VALUESTATE}"
+                    change=".validateMobile"
+                    class="sapMInputBaseWidthPadding"
+                    value="{path:'worklistView>Mobile',type:'.oCustomType.MobileNumber'}"
+                    editable="{= ( ${worklistView>/sProcessType} === 'createRequest') ? true : false }"
+                    mask="+^971-**-*******"
+                    placeholder="Enter Mobile Number"
+                    required="true">
+                    <custom:rules>
+                        <MaskInputRule maskFormatSymbol="*"
+                            regex="[0-9]" />
+                    </custom:rules>
+                </custom:maskedInputExtended>
+                <!--<Input visible="{= ${worklistView>/sProcessType} === 'createRequest' ? true : false }" id="mobilePhone"-->
+                <!-- valueStateText="{i18n>MOBILE_VALUESTATE}" liveChange=".disableValueState" class="sapMInputBaseWidthPadding" value="{worklistView>Mobile}"-->
+                <!-- type="Tel" editable="{= ( ${worklistView>/sProcessType} === 'createRequest') ? true : false}"></Input>-->
+            </f:content>
+        </f:SimpleForm>
+    </Panel>
+</core:FragmentDefinition>

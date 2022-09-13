@@ -1,0 +1,10 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.ui.unified" xmlns:m="sap.m">
+	<Menu>
+		<items>
+			<MenuItem text="Sort Ascending" icon="sap-icon://sort-ascending" select="onAscending"/>
+			<MenuItem text="Sort Descending" icon="sap-icon://sort-descending" select="onDescending"/>
+			<MenuTextFieldItem label="Filter" enabled="true" startsSection="true" icon="sap-icon://filter" select="handleColFilterPress"/>
+			<MenuItem text="Clear Filter" visible="false" icon="sap-icon://clear-filter" select="clearColFilter"/>
+		</items>
+	</Menu>
+</core:FragmentDefinition>

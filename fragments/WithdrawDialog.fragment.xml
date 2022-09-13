@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>TIT_WITHDRAW}" type="Message">
+		<content>
+			<Label text="{i18n>MSG_WITHDRAW_WARNING}" required="true"/>
+			<TextArea width="100%" placeholder="{i18n>PLHOLD_WITHDRAW}" value="{worklistView>/Accommodation/WithdrawComments}"/>
+		</content>
+		<buttons>
+			<Button type="Reject" text="{i18n>WITHDRAW}" press="_Withdraw"/>
+			<Button type="Transparent" text="{i18n>CANCEL}" press="_CancelWithdrawDialog"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

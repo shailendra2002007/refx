@@ -1,0 +1,121 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:uiTable="sap.ui.table">
+    <Panel expandable="false">
+        <f:SimpleForm maxContainerCols="1"
+            editable="false"
+            layout="ResponsiveGridLayout"
+            labelSpanL="0"
+            labelSpanM="0"
+            labelSpanXL="0"
+            labelSpanS="0"
+            emptySpanS="0"
+            emptySpanM="0"
+            emptySpanL="0"
+            emptySpanXL="0"
+            columnsL="1"
+            columnsM="1"
+            columnsXL="1">
+            <f:content>
+                <core:Title text="{i18n>LOG_HEADER}"
+                    icon="sap-icon://history"></core:Title>
+                <VBox>
+
+                    <!-- <Title text="Listing the logs for the current request.." visible="" class="sapUiRootBackground" /> -->
+                    <Table items="{model:'worklistView',path:'/Accommodation/Logs/results',filters:[{path:'executed_by',operator:'NE',value1:''}]}"
+                        fixedLayout="false"
+                        rememberSelections="false">
+                        <!-- <infoToolbar>
+                        <Toolbar>
+                            <content>
+                                <Text text="Listing the logs for the current request.."></Text>
+                            </content>
+                        </Toolbar>
+                    </infoToolbar> -->
+                        <columns>
+                            <Column>
+                                <header>
+                                    <Text class="bold"
+                                        text="Department"></Text>
+                                </header>
+                            </Column>
+                            <Column demandPopin="true"
+                                popinDisplay="Inline"
+                                minScreenWidth="Tablet"
+                                visible="false">
+                                <header>
+                                    <Text class="bold"
+                                        text="Work Item Text"></Text>
+                                </header>
+                            </Column>
+                            <Column demandPopin="true"
+                                popinDisplay="Inline"
+                                minScreenWidth="Tablet"
+                                visible="false">
+                                <header>
+                                    <Text class="bold"
+                                        text="Status"></Text>
+                                </header>
+                            </Column>
+                            <Column demandPopin="true"
+                                popinDisplay="Inline"
+                                minScreenWidth="Tablet">
+                                <header>
+                                    <Text class="bold"
+                                        text="Action Performed"></Text>
+                                </header>
+                            </Column>
+                            <Column demandPopin="true"
+                                popinDisplay="Inline"
+                                minScreenWidth="Tablet">
+                                <header>
+                                    <Text class="bold"
+                                        text="User ID"></Text>
+                                </header>
+                            </Column>
+                            <Column demandPopin="true"
+                                popinDisplay="Inline"
+                                minScreenWidth="Tablet">
+                                <header>
+                                    <Text class="bold"
+                                        text="Name"></Text>
+                                </header>
+                            </Column>
+                            <Column demandPopin="true"
+                                popinDisplay="Inline"
+                                minScreenWidth="Tablet">
+                                <header>
+                                    <Text class="bold"
+                                        text="Date"></Text>
+                                </header>
+                            </Column>
+                            <Column demandPopin="true"
+                                popinDisplay="Inline"
+                                minScreenWidth="Tablet">
+                                <header>
+                                    <Text class="bold"
+                                        text="Time"></Text>
+                                </header>
+                            </Column>
+                        </columns>
+                        <items >
+                            <ColumnListItem type="Inactive">
+                                <cells>
+                                    <Text text="{worklistView>agent_dept}"></Text>
+                                    <Text text="{worklistView>workitem_text}"></Text>
+                                    <Text text="{worklistView>status_text}"></Text>
+                                    <Text text="{= ${worklistView>action_performed} ? ${worklistView>action_performed} : 'N/A'}"></Text>
+                                    <Text text="{worklistView>executed_by}"></Text>
+                                    <Text text="{worklistView>agent_name}"></Text>
+                                    <Text text="{path:'worklistView>executed_date',type:'sap.ui.model.odata.type.DateTime',formatOptions:{pattern:'MMM dd, yyyy'},constraints:{displayFormat:'Date'}}"></Text>
+                                    <Text text="{path:'worklistView>executed_time',type:'sap.ui.model.odata.type.Time',formatOptions:{pattern:'hh:mm:ss a'}}"></Text>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </VBox>
+            </f:content>
+        </f:SimpleForm>
+    </Panel>
+</core:FragmentDefinition>

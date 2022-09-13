@@ -1,0 +1,306 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:custom="dewa.refx.accommodation.util">
+    <Panel expandable="false">
+        <f:SimpleForm minWidth="1024"
+            maxContainerCols="2"
+            editable="true"
+            layout="ResponsiveGridLayout"
+            labelSpanL="5"
+            labelSpanM="4"
+            emptySpanXL="0"
+            emptySpanL="0"
+            emptySpanM="0"
+            columnsL="2"
+            columnsM="2"
+            binding="{worklistView>/Accommodation}">
+            <f:content>
+                <core:Title text="{i18n>REQ_NEW_ACC}"
+                    icon="sap-icon://form" />
+                <!--Building Name and Number-->
+                <!--dropdown-->
+                <Label text="{i18n>BUILD_NO_NAME}"
+                    required="{= ${worklistView>/sProcessType} === 'createRequest' ? true : false }" />
+                <Select id="buildingNumberCB"
+                    class=""
+                    width="100%"
+                    items="{/BuildingsF4Set}"
+                    selectedKey="{worklistView>BldngNo}"
+                    change="onChangeBuilding"
+                    showSecondaryValues="true"
+                    visible="{= ( ${worklistView>/sProcessType} === 'createRequest') ? true : false}"
+                    editable="{= ( ${worklistView>/sProcessType} === 'createRequest') ? true : false}">
+                    <items>
+                        <core:ListItem key="{BldngNo}"
+                            text="{BldngName}"
+                            additionalText="{BldngNo} {= Number( ${BusEntityNo} ) &gt; 0 ? ''.concat( '(', Number( ${BusEntityNo} ), ')') : '' }" />
+                    </items>
+                </Select>
+                <!--text pls be aware that the below Text ui are bininded to the above UI's-->
+                <Label text="{i18n>BUILD_NO_NAME}"
+                    visible="{= ${worklistView>/Accommodation} ? ${utility>/}.ReverseVisibility('buildingNumberCB') : false }"
+                    required="false" />
+                <Text text="{worklistView>/Accommodation/BldngName} ({= ${utility>/}.RemoveZeros(${worklistView>/Accommodation/BldngNo})})"
+                    visible="{= ${worklistView>/Accommodation} ? ${utility>/}.ReverseVisibility('buildingNumberCB') : false }"></Text>
+                <!--Required Flat type-->
+                <!--dropdown-->
+                <Label text="{i18n>REQ_FLAT_TYP}"
+                    required="{= ( ${worklistView>/sProcessType} === 'createRequest' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>BS} 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} ) ? true : false }"
+                    visible="{= ( ${worklistView>/sProcessType} === 'createRequest' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>BS} 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} ) ? true : false }" />
+                <Select id="flatTypeCB"
+                    class=""
+                    width="100%"
+                    items="{flatType>/}"
+                    selectedKey="{worklistView>FlatType}"
+                    visible="{= ( ${worklistView>/sProcessType} === 'createRequest' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>BS} 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} ) ? true : false }"
+                    change="onChangeFlatType"
+                    showSecondaryValues="true"
+                    editable="{= ( ${worklistView>/sProcessType} === 'createRequest' 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>BS} 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : false }">
+                    <items>
+                        <core:ListItem key="{flatType>FlatType}"
+                            text="{flatType>FlatTypeText}"
+                            additionalText="{flatType>FlatType}" />
+                    </items>
+                </Select>
+                <!--text, pls be aware that the following text Ui are binded to the above combo box-->
+                <Label text="{i18n>REQ_FLAT_TYP}"
+                    required="false"
+                    visible="{= ${worklistView>/Accommodation} ? ${utility>/}.ReverseVisibility('flatTypeCB') : false }" />
+                <Text text="{worklistView>/Accommodation/FlatTypeText} ({worklistView>/Accommodation/FlatType})"
+                    visible="{= ${worklistView>/Accommodation} ? ${utility>/}.ReverseVisibility('flatTypeCB') : false }"></Text>
+                <!--Rental Unit Combobox	-->
+                <Label text="{i18n>ASSIGN_RENTAL_UNIT}"
+                    required="{= ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>BS} 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : false }"
+                    visible="{= ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>BS} 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : false }" />
+                <ComboBox width="100%"
+                    items="{rentalUnit>/}"
+                    selectedKey="{worklistView>RentalObject}"
+                    showSecondaryValues="true"
+                    id="rentalUnitCB"
+                    visible="{= ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>BS} 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? true : false }"
+                    selectionChange="onChangeRentalUnit">
+                    <items>
+                        <core:ListItem key="{rentalUnit>RentalObject}"
+                            text="{rentalUnit>RentalObjectText}"
+                            additionalText="{rentalUnit>RentalObject}" />
+                    </items>
+                </ComboBox>
+                <!--Rental Unit text, this is only be visible when the rental unit cb is not visible-->
+                <!--the reason why the worklistView>/Accommodation is binding with utility model is cus, utility model will not any change which in turn the utility funtion will not trigger,-->
+                <!--thats why it is bindede to aforementioned path where the changes will happen which in turn will trigger the utility function :P-->
+                <Label text="{i18n>ASSIGED_RENTAL_UNIT}"
+                    required="false"
+                    visible="{= ( ${worklistView>/sProcessType} === 'createRequest' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPARTMENT_HEAD} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>BS} 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>INITIATOR} 
+                    &amp;&amp; ${worklistView>/Accommodation/StatusText} !== 'Contract Created' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/StatusText} === 'Contract Created' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} !== ${i18n>INITIATOR} 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} !== '' ) ? true : false }" />
+                <Text text="{worklistView>/Accommodation/RentalObjectText} ({= ${utility>/}.RemoveZeros(${worklistView>/Accommodation/RentalObject})})"
+                    visible="{= ( ${worklistView>/sProcessType} === 'createRequest' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Z' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPUTY_MANAGER} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>DEPARTMENT_HEAD} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>GD} 
+                    &amp;&amp; ${worklistView>/Accommodation/FlatType}.charAt(0) === 'Y' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/BusType} === ${i18n>BS} 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>BUILDING_ADMINISTRATOR} 
+                    &amp;&amp; ${worklistView>BldngNo} !== '' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>INITIATOR} 
+                    &amp;&amp; ${worklistView>/Accommodation/StatusText} !== 'Contract Created' ) ? false : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/StatusText} === 'Contract Created' ) ? true : ( ${worklistView>/sProcessType} === 'viewRequest' 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} !== ${i18n>INITIATOR} 
+                    &amp;&amp; ${worklistView>/Accommodation/Workitem/Agent_dept} !== '' ) ? true : false }"></Text>
+                <core:Title text=""
+                    class="letsNotDisplayThisInMobileView">
+                    <core:customData>
+                        <core:CustomData key="letsNotDisplayThisInMobileView"
+                            value="true"
+                            writeToDom="true"></core:CustomData>
+                    </core:customData>
+                </core:Title>
+                <!--contract Number-->
+                <Label visible="{= ${worklistView>/Accommodation/StatusText} === 'Contract Created' }"
+                    text="Contract Number"
+                    required="false" />
+                <Text text="{= ${utility>/}.RemoveZeros(${worklistView>ContractNo})}"
+                    visible="{= ${worklistView>/Accommodation/StatusText} === 'Contract Created' }"></Text>
+                <!--Rent Payable-->
+                <Label visible="{= ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} || ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} || ${worklistView>/sProcessType} === 'createRequest' }"
+                    text="Rent Payable"
+                    required="false" />
+                <Text text="{= ${utility>/}.RemoveZeros(${worklistView>RentPayable})}"
+                    visible="{= ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} || ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} || ${worklistView>/sProcessType} === 'createRequest' }"></Text>
+                <!--Variable Rent-->
+                <Label visible="{= ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} || ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} }"
+                    text="Variable Rent"
+                    required="false" />
+                <Text text="{= ${worklistView>VariableRent} ? 'Yes' : 'No'}"
+                    visible="{= ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} || ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} }"></Text>
+                <!--Contract Date-->
+                <Label visible="{= ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} || ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} }"
+                    text="Contract Start Date"
+                    required="{= ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} || ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} }"></Label>
+                <DatePicker value="{ path:'worklistView>ContractStartD', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true, UTC: true } }"
+                    visible="{= ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} || ${worklistView>/Accommodation/Workitem/Agent_dept} === ${i18n>RE_PARTNER} }"
+                    minDate="{worklistView>/currentDate}"
+                    placeholder="Contract Start Date"
+                    change="onContractStartDateChange"></DatePicker>
+                <!--text-->
+                <Label text="{i18n>CONTRACT_START_DATE}"
+                    visible="{= ${worklistView>/Accommodation/StatusText} === 'Contract Created'}" />
+                <Text text="{path: 'worklistView>ContractStartD', type:'sap.ui.model.odata.type.DateTime', formatOptions:{pattern:'MMM dd, yyyy'},constraints:{displayFormat:'Date'}}"
+                    class="simpleFormText"
+                    visible="{= ${worklistView>/Accommodation/StatusText} === 'Contract Created'}" />
+            </f:content>
+        </f:SimpleForm>
+    </Panel>
+</core:FragmentDefinition>

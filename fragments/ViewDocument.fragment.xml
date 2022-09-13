@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:util="sap.suite.ui.commons.util">
+	<Dialog title="Document Viewer Document" stretch="true" icon="sap-icon://inspection">
+		<!--<customHeader>-->
+		<!--	<Bar>-->
+		<!--		<contentMiddle>-->
+		<!--			<Title text='Document Viewer'></Title>-->
+		<!--		</contentMiddle>-->
+		<!--		<contentRight>-->
+		<!--			<Button icon="sap-icon://decline" press=".onViewDocumentClose"></Button>-->
+		<!--		</contentRight>-->
+		<!--	</Bar>-->
+		<!--</customHeader>-->
+		<endButton>
+			<Button press=".onViewDocumentClose" text="Close"></Button>
+		</endButton>
+		<content>
+			<core:HTML content="{path:'viewDocumentModel>/fileURL',formatter:'.fileURL'}"></core:HTML>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,531 @@
+/* when the message flows in the message box, inorder not ot have an horiztantal scroll bar, lets wrap the content */
+[data-dewa-refx-accommodation="true"] .sapMMessageBoxDetails {
+    padding-top: 1rem;
+    overflow-wrap: break-word;
+}
+
+/* making the link underline, let me check if this is getting commented in the github*/
+[data-dewa-refx-accommodation="true"] .sapMLnk:not(.sapMLnkDsbl) {
+    text-decoration: underline;
+}
+
+[data-dewa-refx-accommodation="true"] .sapMText {
+    width: 100%;
+}
+
+/* comments user name as blue as suggested by mobility */
+[data-dewa-refx-accommodation="true"] .sapMFeedListItemTextName a {
+    color: #0a6ed1 !important;
+    text-decoration: none;
+}
+
+/* removing the text-decoration */
+.noTextDecoration {
+    text-decoration: none;
+}
+
+/* removing the close button border as suggested by the UX */
+Button[title="Decline"] .sapMBtnInner {
+    border: none;
+}
+
+/* making the timestamp appear in the mobile view, should replace it but dont have any other solution, at there sap ui5 version that we have this is not appearing in mobile */
+[data-dewa-refx-accommodation="true"] html.sap-phone .sapMFeedListItemTimestamp {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: 1rem;
+    font-size: .75rem;
+}
+
+/* making the checkbox margin as zero for mobile view */
+[data-dewa-refx-accommodation="true"] html.sap-phone .sapMCb.sapMCbWrapped.sapMCbHasLabel>.sapMLabel.sapMLabelWrapped {
+    margin: 0;
+    line-height: 1.4rem;
+}
+
+.HomeTitleShadow {
+    box-shadow: 1px 1px 2px rgb(0 0 0 / 20%);
+    align-items: center;
+    justify-content: center;
+}
+
+[data-dewa-refx-accommodation="true"] .sapFDynamicPageTitleMain>.sapFDynamicPageTitleMainInner {
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Hiding the exit coordinator button */
+[data-dewa-refx-accommodation="true"] html.sap-phone label[aria-label="DoNotDisplay"] {
+    display: none;
+}
+
+label[aria-label="DoNotDisplay"] {
+    visibility: hidden;
+}
+
+/* making the landing table table contrainer equal in all sides */
+[data-dewa-refx-accommodation="true"] .sapFDynamicPage-Std-Phone .sapFDynamicPageContent,
+[data-dewa-refx-accommodation="true"] .sapFDynamicPage-Std-Phone .sapFDynamicPageContentFitContainer {
+    padding: 1rem 1rem 0 1rem;
+}
+
+
+.noBorder {
+    border: none;
+}
+
+/* the top app selector in black mode itlooks wierd in mobile */
+[data-dewa-refx-accommodation="true"] .sapUshellShellHeadActionImg {
+    border: none;
+}
+
+[data-dewa-refx-accommodation="true"] .sapUiRespGridMedia-Std-Phone.sapUiFormResGridCont>.sapUiFormElementLbl:not(.sapUiRespGridSpanS12)>.sapMLabel,
+[data-dewa-refx-accommodation="true"] .sapUiRespGridMedia-Std-Tablet.sapUiFormResGridCont>.sapUiFormElementLbl:not(.sapUiRespGridSpanM12)>.sapMLabel,
+[data-dewa-refx-accommodation="true"] .sapUiRespGridMedia-Std-Desktop.sapUiFormResGridCont>.sapUiFormElementLbl:not(.sapUiRespGridSpanL12)>.sapMLabel,
+[data-dewa-refx-accommodation="true"] .sapUiRespGridMedia-Std-LargeDesktop.sapUiFormResGridCont>.sapUiFormElementLbl:not(.sapUiRespGridSpanXL12)>.sapMLabel {
+    text-align: start !important;
+    float: none;
+    position: relative;
+}
+
+[data-dewa-refx-accommodation="true"] .sapMLabel * {
+    white-space: normal;
+}
+
+html.sap-phone [data-letsNotDisplayThisInMobileView="true"] {
+    display: none;
+}
+
+.columnReversed .sapMListItems {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+[data-dewa-refx-accommodation="true"] .sapMUCFileName {
+    white-space: break-spaces !important;
+    overflow-wrap: anywhere;
+}
+
+.sapUiForm .sapUiCompGroupElementVBox .sapMLabel:after {
+    content: "";
+}
+
+[data-dewa-refx-accommodation="true"] .blueFont {
+    color: blue;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.bold>* {
+    font-weight: bold;
+}
+
+[data-dewa-refx-accommodation="true"] .whitespace {
+    white-space: break-spaces;
+}
+
+/*for attachment icons*/
+
+[data-dewa-refx-accommodation="true"] .sapMUCListFirstItem>.sapMLIBContent,
+[data-dewa-refx-accommodation="true"] .sapMUCListLastItem>.sapMLIBContent,
+[data-dewa-refx-accommodation="true"] .sapMUCListSingleItem>.sapMLIBContent,
+[data-dewa-refx-accommodation="true"] .sapMUCListItem>.sapMLIBContent {
+    display: flex;
+    overflow: hidden;
+    padding: 0;
+    align-items: center;
+}
+
+/* [data-dewa-refx-accommodation="true"] .sapUiFormM:not(.sapUiFormEdit) .sapUiFormResGridCont>div .sapUiIcon:not(.sapMBtnIcon),
+[data-dewa-refx-accommodation="true"] .sapUiFormM:not(.sapUiFormEdit) .sapUiFormResGridCont>div .sapMCbBg {
+    font-size: xx-large;
+} */
+
+/*Pagination css*/
+
+.pagination_flexJustifyEnd {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pagination_flexJustifyEnd .sapMSelectListDisabled,
+[data-dewa-refx-accommodation="true"] .sapMSelectListItemBaseDisabled {
+    display: none;
+}
+
+.sideMenuForApporvers {}
+
+.sideMenuForApporvers * {
+    padding: 0.4px !important;
+    margin: 0.1px !important;
+}
+
+[data-dewa-refx-accommodation="true"] .sapUiCommonsHoriDivTypeArea {
+    border-color: #d7d7d7;
+}
+
+[data-dewa-refx-accommodation="true"] .sapMITBScrollContainer {
+    position: sticky;
+}
+
+/*controlling the upload and the delete button based on the business condition*/
+
+[data-dewa-refx-accommodation="true"] .sapMUCButtonContainer {
+    display: none !important;
+}
+
+/*making the padding less in all object page layout*/
+
+/* [data-dewa-refx-accommodation="true"] .sapUxAPObjectPageSection .sapUxAPObjectPageSectionContainer .sapUxAPObjectPageSubSection .sapUxAPBlockContainer {
+    padding-bottom: 0rem;
+    padding-top: 0rem;
+} */
+
+/* making the border bottom in panel */
+[data-dewa-refx-accommodation="true"] .sapMPanel {
+    border-bottom: 1px solid #d9d9d9;
+}
+
+/* making this logic in the ui level itself */
+/* enabling the upload button only fot these user */
+/* [data-sProcessType="viewRequest"]:not([data-Agent_dept="INITIATOR"], [data-agent_dept="BUILDING ADMINISTRATOR"], [data-agent_dept="DEPUTY MANAGER"]) .sapUiFupButtonOnly {
+    display: none !important;
+} */
+
+[data-title_sProcessType="createRequest"][data-title_Agent_dept=""] .sapUiIcon::after {
+    content: "*";
+    color: red;
+    margin-left: 0.5rem;
+}
+
+[data-title_sProcessType="viewRequest"][data-title_Agent_dept="INITIATOR"] .sapUiIcon::after {
+    content: "*";
+    color: red;
+    margin-left: 0.5rem;
+}
+
+.worklistView {}
+
+[data-dewa-refx-accommodation="true"] .sapUiCompGroupElementVBox {
+    margin-bottom: 0px;
+}
+
+/* [data-dewa-refx-accommodation="true"] .justifyEnd {
+    display: flex;
+    justify-content: end;
+} */
+
+[data-dewa-refx-accommodation="true"] .sapMText {
+    width: 100%;
+}
+
+/* [data-dewa-refx-accommodation="true"] .sapUxAPObjectPageSubSectionHeaderTitle {
+    color: #333333;
+    font-size: inherit !important;
+    font-weight: normal;
+} */
+
+/* [data-dewa-refx-accommodation="true"] .sapUiRespGrid.sapUiRespGridHSpace1>div {
+    margin: 0 0.5rem !important;
+} */
+
+/* [data-dewa-refx-accommodation="true"] .sapSuiteUiCommonsTimeline {
+    max-width: none !important;
+} */
+
+[data-dewa-refx-accommodation="true"] .sapUiForm .sapUiFormElementLbl>.sapMLabel {
+    font-weight: bold;
+}
+
+/* maintaining an common space in the grid */
+/* [data-dewa-refx-accommodation="true"] .sapUiFormResGrid>div {
+    padding: 1rem 1rem !important;
+    box-sizing: border-box;
+} */
+
+.inboxViewFilterBorder {
+    background-image: repeating-linear-gradient(90deg, white, #077b36, white);
+    height: 0.09rem !important;
+    border: none !important;
+}
+
+/* for black theme */
+[data-dewa-refx-accommodation="true"] .sapUiTheme-sap_hcb .inboxViewFilterBorder {
+    background-image: repeating-linear-gradient(90deg, black, #077b36, black);
+    height: 0.09rem !important;
+    border: none !important;
+}
+
+[data-dewa-refx-accommodation="true"] .sapMUCSeparator {
+    display: none;
+}
+
+/* [data-dewa-refx-accommodation="true"] .sapSuiteUiCommonsTimelineContentsH {
+    height: auto;
+} */
+
+* {
+    outline: none !important;
+}
+
+[data-dewa-refx-accommodation="true"] .sapMCb .sapMLabel {
+    width: 100%;
+    text-align: left;
+    height: auto;
+    white-space: break-spaces;
+}
+
+.worklistViewUploadCollection {}
+
+[data-dewa-refx-accommodation="true"] .sapMUC .sapMTB-Transparent-CTX>.sapMTitleTB.sapMTitleStyleAuto {
+    font-size: small;
+}
+
+/* removing the underline from title */
+[data-dewa-refx-accommodation="true"] .sapUiFormM .sapUiFormContainerTitle>.sapUiFormTitle {
+    font-weight: bold;
+}
+
+[data-dewa-refx-accommodation="true"] .sapUxAPAnchorBar .sapUxAPAnchorBarButton>.sapMBtnIconLast>.sapMBtnContent {
+    padding-right: 1.675rem !important;
+}
+
+[data-dewa-refx-accommodation="true"] .sapUxAPAnchorBar .sapUxAPAnchorBarButton .sapMBtnInner.sapMBtnTransparent.sapMBtnHoverable:hover .sapMBtnContent,
+[data-dewa-refx-accommodation="true"] .sapUxAPAnchorBar .sapUxAPAnchorBarButton.sapMBtn:hover>.sapMBtnHoverable .sapMBtnContent,
+[data-dewa-refx-accommodation="true"] .sapUxAPAnchorBar .sapUxAPAnchorBarButton.sapMBtn:hover>.sapMBtnHoverable .sapMBtnIcon {
+    font-weight: bold;
+}
+
+[data-dewa-refx-accommodation="true"] .sapUxAPAnchorBar .sapUxAPAnchorBarButton.sapUxAPAnchorBarButtonSelected .sapMBtnContent,
+[data-dewa-refx-accommodation="true"] .sapUxAPAnchorBar .sapUxAPAnchorBarButton.sapUxAPAnchorBarButtonSelected .sapMBtnIcon {
+    font-weight: bold;
+}
+
+.worklistViewUploadCollection .sapMListNoData {
+    align-items: center;
+    display: flex;
+}
+
+.worklistViewUploadCollection .sapMUCButtonContainer {
+    align-self: center;
+}
+
+.worklistViewUploadCollection .sapMTB-Transparent-CTX.sapMTB {
+    padding-left: 0px;
+    padding-bottom: 0.5rem;
+}
+
+[data-title_sProcessType="createRequest"][data-title_Agent_dept=""] .worklistViewUploadCollection .sapMTB-Transparent-CTX.sapMTB,
+[data-title_sProcessType="viewRequest"][data-title_Agent_dept="INITIATOR"] .worklistViewUploadCollection .sapMTB-Transparent-CTX.sapMTB {
+    display: none;
+}
+
+[data-title_sProcessType="viewRequest"][data-title_Agent_dept="INITIATOR"] .sapUiIcon::after {
+    content: "*";
+    color: red;
+    margin-left: 0.5rem;
+}
+
+.msgSubText {
+    font-size: calc(100% - 2px);
+    font-style: italic;
+    color: red;
+}
+
+[data-dewa-refx-accommodation="true"] .sapUiRespGridSpanInvisible {
+    display: none;
+}
+
+[data-dewa-refx-accommodation="true"] .sapSuiteUiCommonsTimelineContents {
+    height: 100% !important;
+}
+
+[data-dewa-refx-accommodation="true"] .sapUxAPAnchorBarScrollContainer span {
+    font-size: 1rem !important;
+}
+
+.agreementLayout {
+    width: 100%;
+    background-color: #ceddec;
+    margin-bottom: 1vh;
+}
+
+[data-dewa-refx-accommodation="true"] .sapUxAPObjectPageSectionTitle {
+    border-bottom: 0.2rem solid #999999 !important;
+    font: inherit !important;
+}
+
+/*hiding the button*/
+
+/* [data-dewa-refx-accommodation="true"] .sapMFeedIn .sapMBtn {
+    display: none;
+} */
+
+.noPannelSpacing .sapMPanelContent {
+    padding: 0;
+}
+
+.worklistView .sapMPanelContent {
+    padding: 0rem 0rem 0rem;
+    box-sizing: border-box;
+    overflow: auto;
+    white-space: normal;
+}
+
+.boldNdUnderLine {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+[data-dewa-refx-accommodation="true"] .sapMFeedListItem .sapMFeedListItemTextText .sapMFeedListItemTextString {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: normal;
+    color: #333333;
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+
+/* [data-dewa-refx-accommodation="true"] .sapMFeedInImage.sapUiIcon:before {
+    color: #346187;
+} */
+
+/*making the text align during read only*/
+
+[data-dewa-refx-accommodation="true"] .sapMInputBaseReadonlyInner {
+    border-color: transparent;
+    background: transparent;
+    padding: inherit !important;
+    font-weight: normal !important;
+}
+
+[data-dewa-refx-accommodation="true"] .sapUiRtt {
+    background-color: whitesmoke;
+    padding: 10px;
+    border-radius: 2px;
+    font-size: smaller;
+    border-color: black;
+    border-style: solid;
+    border-width: thin;
+}
+
+[data-dewa-refx-accommodation="true"] .sapUiRttTitle {
+    font-weight: bolder;
+    text-decoration: underline;
+    margin: 0 0 5px 0;
+}
+
+
+[data-dewa-refx-accommodation="true"] .sapMObjectAttributeTitle {
+    font-weight: bold !important;
+    width: 35% !important;
+}
+
+[data-dewa-refx-accommodation="true"] .sapMObjectAttributeText {
+    overflow: initial !important;
+}
+
+.inputParameters {
+    background-color: #ffffff;
+    border: 0.01rem solid #cac7c785;
+    border-radius: 0.35rem;
+}
+
+.bold {
+    font-weight: bold !important;
+}
+
+[data-dewa-refx-accommodation="true"] .sapUiTableCell .sapMLabel {
+    color: #333333;
+    width: 100%;
+}
+
+.declarationHBox {
+    margin: 0.5rem 0 1rem 0 !important;
+}
+
+.declarationCheckBox .sapMLabel {
+    color: black;
+}
+
+.declarationMandatoryClass {
+    font-weight: 700;
+    font-size: larger;
+    color: red;
+}
+
+.flexJustifiedCenter {
+    display: flex;
+    justify-content: center;
+}
+
+.flexJustifiedStart {
+    display: flex;
+    justify-content: flex-start;
+}
+
+/*this is for the inbox header */
+
+[data-dewa-refx-accommodation="true"] .sapMTitle * {
+    white-space: normal;
+}
+
+[data-dewa-refx-accommodation="true"] .sapMTB {
+    height: auto;
+}
+
+.inboxTable {}
+
+html.sap-desktop Div.inboxTable table .sapMColumnHeader>.sapMLabel,
+html.sap-desktop Div.inboxTable table .sapMColumnHeader>.sapMText,
+html.sap-desktop Div.inboxTable table .sapMListTblCell>.sapMSlt>.sapMSltLabel,
+html.sap-desktop Div.inboxTable table .sapMListTblCell>.sapMObjectNumber,
+html.sap-desktop Div.inboxTable table .sapMListTblCell>.sapMLabel,
+html.sap-desktop Div.inboxTable table .sapMListTblCell>.sapMText,
+html.sap-desktop Div.inboxTable table .sapMListTblCell .sapMObjStatus,
+html.sap-desktop Div.inboxTable table .sapMListTblCell .sapTntInfoLabel,
+html.sap-desktop Div.inboxTable table .sapMListTblCell .sapMVBox,
+html.sap-desktop Div.inboxTable table .sapMText,
+html.sap-tablet Div.inboxTable table .sapMColumnHeader>.sapMLabel,
+html.sap-tablet Div.inboxTable table .sapMColumnHeader>.sapMText,
+html.sap-tablet Div.inboxTable table .sapMListTblCell>.sapMSlt>.sapMSltLabel,
+html.sap-tablet Div.inboxTable table .sapMListTblCell>.sapMObjectNumber,
+html.sap-tablet Div.inboxTable table .sapMListTblCell>.sapMLabel,
+html.sap-tablet Div.inboxTable table .sapMListTblCell>.sapMText,
+html.sap-tablet Div.inboxTable table .sapMListTblCell .sapMObjStatus,
+html.sap-tablet Div.inboxTable table .sapMListTblCell .sapTntInfoLabel,
+html.sap-tablet Div.inboxTable table .sapMListTblCell .sapMVBox,
+html.sap-tablet Div.inboxTable table .sapMText {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center !important;
+    align-items: center;
+}
+
+.flexJustifiedCenter {
+    display: flex;
+    justify-content: center;
+}
+
+.marginLeft3px {
+    margin-left: 3px;
+}
+
+.redFont>*,
+.redFont {
+    color: red !important;
+}
+
+[data-dewa-refx-accommodation="true"] .sapMLabelRequired:before {
+    color: red !important;
+    font-weight: 700 !important;
+}

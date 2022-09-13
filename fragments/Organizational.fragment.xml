@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    <Panel expandable="false">
+        <f:SimpleForm minWidth="1024"
+            maxContainerCols="2"
+            editable="false"
+            layout="ResponsiveGridLayout"
+            labelSpanL="5"
+            labelSpanM="4"
+            visible="{= ${worklistView>/Accommodation/PayrollNo} !== '' ? true : false }"
+            emptySpanL="1"
+            emptySpanM="0"
+            columnsL="2"
+            columnsM="2"
+            binding="{worklistView>/Accommodation}">
+            <f:content>
+                <core:Title text="{i18n>ORG_DATA}"
+                    icon="sap-icon://org-chart"/>
+                <Label text="{i18n>GRADE}"/>
+                <Text text="{worklistView>GradeName}"
+                    class="simpleFormText"/>
+                <Label text="{i18n>DIVISION}"/>
+                <Text text="{worklistView>DivisionName} ({= ${utility>/}.RemoveZeros(${worklistView>Division})})"
+                    class="simpleFormText"/>
+                <Label text="{i18n>DEPARTMENMT}"/>
+                <Text text="{worklistView>DepartmentName} ({= ${utility>/}.RemoveZeros(${worklistView>Department})})"
+                    class="simpleFormText"/>
+                <Label text="{i18n>SECTION}"/>
+                <Text text="{worklistView>SectionName} ({= ${utility>/}.RemoveZeros(${worklistView>Section})})"
+                    class="simpleFormText"/>
+                <core:Title text=""
+                    class="letsNotDisplayThisInMobileView">
+                    <core:customData>
+                        <core:CustomData key="letsNotDisplayThisInMobileView"
+                            value="true"
+                            writeToDom="true"></core:CustomData>
+                    </core:customData>
+                </core:Title>
+                <Label text="{i18n>DESIGNATION}"/>
+                <Text text="{worklistView>DesignationName} ({= ${utility>/}.RemoveZeros(${worklistView>Designation})})"
+                    class="simpleFormText"/>
+                <Label text="{i18n>ORG_UNIT}"/>
+                <Text text="{worklistView>OrgUnitName} ({= ${utility>/}.RemoveZeros(${worklistView>OrgUnit})})"
+                    class="simpleFormText"/>
+                <Label text="{i18n>SUPER_DEPT}"/>
+                <Text text="{worklistView>SuperDepartName} ({= ${utility>/}.RemoveZeros(${worklistView>SuperDepartment})})"
+                    class="simpleFormText"/>
+                <Label text="{i18n>UNIT}"/>
+                <Text text="{worklistView>UnitName} ({= ${utility>/}.RemoveZeros(${worklistView>Unit})})"
+                    class="simpleFormText"/>
+            </f:content>
+        </f:SimpleForm>
+    </Panel>
+</core:FragmentDefinition>

@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:common="sap.suite.ui.commons"
+	xmlns:layout="sap.ui.layout">
+	<Panel expandable="false">
+		<f:SimpleForm minWidth="1024" maxContainerCols="1" editable="true" layout="ResponsiveGridLayout" labelSpanL="0" labelSpanM="0"
+			labelSpanXL="0" labelSpanS="0" emptySpanS="0" emptySpanM="0" emptySpanL="0" emptySpanXL="0" columnsL="1" columnsM="1" columnsXL="1"
+            >
+			<f:content>
+				<core:Title text="{i18n>COMMENTS}" icon="sap-icon://comment">
+					<core:customData>
+						<core:CustomData key="title_sProcessType" value="{worklistView>/sProcessType}" writeToDom="true"></core:CustomData>
+						<core:CustomData key="title_Agent_dept" value="{worklistView>/Accommodation/Workitem/Agent_dept}" writeToDom="true"></core:CustomData>
+					</core:customData>
+				</core:Title>
+				<VBox>
+					<TextArea
+						visible="{= ( ${worklistView>/sProcessType} === 'createRequest' || ( ${worklistView>/Accommodation/Workitem} !== undefined &amp;&amp; ${worklistView>/Accommodation/Workitem} !== null &amp;&amp; ${worklistView>/Accommodation/Workitem/Activity/results}.length &gt; 0 ) ) ? true : false }"
+						value="{worklistView>/Accommodation/Received_Comments}" id="comments" placeholder="{i18n>PLHOLD_COMMENTS}" editable="true" width="100%"
+						class="sapUiSmallMarginBottom" liveChange="onChangeComments"></TextArea>
+					<List showSeparators="Inner" items="{path:'worklistView>/Accommodation/Comments/results',factory:'.factory_constructingCmtsItems2'}"
+						visible="{= ${worklistView>/sProcessType} !== 'createRequest'}" class="columnReversed"></List>
+				</VBox>
+			</f:content>
+		</f:SimpleForm>
+	</Panel>
+</core:FragmentDefinition>
